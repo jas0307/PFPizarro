@@ -1,0 +1,812 @@
+/*MIXIN PARA MEDIA QUERY*/
+
+$breakpoints: (
+    desktop: 1024px,
+    tablet: 960px,
+    mobile: 480px,
+);
+
+@mixin responsive($breakpoint) 
+{
+@if map-has-key($breakpoints, $breakpoint) 
+{
+$width: map-get($breakpoints, $breakpoint);
+@media (max-width: $width) 
+{
+@content;
+}
+} 
+
+@else 
+{
+@warn "Breakpoint '#{$breakpoint}' not found in the list of breakpoints.";
+}
+}
+
+
+/*responsive*/
+.grid-layout
+{
+
+display: flex;
+
+@include responsive(tablet)
+{
+flex-direction: column;
+}
+
+@include responsive(mobile)
+{
+flex-direction: column;
+}
+
+@include responsive(desktop)
+{
+flex-direction: column;
+}
+
+}
+
+
+.logo:hover
+{
+
+transition: all 0.6seg ease;
+filter:brightness(80%);
+}
+
+.logo
+{
+animation-name: logo-empresa;
+animation-iteration-count: 2;
+animation-timing-function: ease-out;
+animation-duration: 3s;
+animation-delay: 2s;
+width: 150px;
+height: 150px;
+
+/*oculta logo*/
+@include responsive(tablet)
+{
+display: none;
+}
+
+@include responsive(mobile)
+{
+display: none;
+}
+
+@include responsive(desktop)
+{
+flex-direction: column;
+}
+}
+
+@keyframes logo-empresa 
+{
+0%
+{
+transform: rotate(0);
+}
+100%
+{
+transform: rotate(360deg);
+}
+}
+.navigation{
+
+width: 100%;
+
+}
+
+.navbar 
+{
+height: 155px;
+@include responsive(tablet)
+{
+/*redefine altura de la barra de navegacion*/
+height: auto;
+}
+@include responsive(mobile)
+{
+height: auto;
+}
+
+@include responsive(desktop)
+{
+height: auto;
+}
+
+}
+
+.nav-item
+{
+margin: 25px;
+@include responsive(tablet)
+{
+/*redefine margen de los item de navegacion*/
+margin: 15px;
+
+}
+}
+
+.nav-link
+{
+transition: relative;
+}
+.nav-link:hover
+{
+border-bottom: 2px solid rgb(57, 167, 23);
+}
+.nav-link:hover::after 
+{
+content:'';
+opacity: 0;
+transition: all 0.2s;
+height: 2px;
+width: 100%;
+background-color: rgb(125, 197, 31);
+position:absolute;
+bottom: 0;
+left: 0;
+@include responsive(tablet)
+{
+/* Remover la línea después del enlace en pantallas pequeñas */
+content: ""; 
+}
+@include responsive(mobile)
+{
+content: "";
+}
+
+@include responsive(desktop)
+{
+content: "";
+}
+.nav-link:hover::after
+{
+opacity: 1;
+}
+}
+
+
+.contenedormain
+{
+display: grid;
+grid-template-rows: 50px 50px 400px;
+grid-template-columns:auto;
+gap: 20px;
+background-color:white;
+@include responsive(tablet)
+{
+display: block;
+}
+
+@include responsive(mobile){
+display: block;
+}
+
+@include responsive(desktop)
+{
+display: block;
+}
+}
+
+.contenedormain-anidado
+{
+display: grid;
+grid-template-rows: auto;
+grid-template-columns:repeat(3,1fr);
+align-items: center;
+justify-items: center;
+justify-content: center;
+@include responsive(tablet)
+{
+display: block;
+}
+
+@include responsive(mobile)
+{
+display: block;
+}
+
+@include responsive(desktop)
+{
+display: block;
+}
+}
+
+.titulo1
+{
+text-align: center;
+}
+.titulo2
+{
+text-align: center;
+}
+
+
+
+/*footer*/
+.PieDePagina
+{
+display:grid;
+grid-template-rows: auto;
+grid-template-columns: auto auto auto;
+height: 250px;
+background-color: #40586d;
+
+@include responsive(tablet)
+{
+display: block;   
+}
+
+@include responsive(mobile)
+{
+display: block; 
+}
+
+@include responsive(desktop)
+{
+display: block;
+}
+}
+.NombreEmpresa
+{
+
+width: 200px;
+height: 200px;
+margin:auto;
+cursor: pointer;
+text-align: center;
+@include responsive(tablet)
+{ 
+display: none;
+}
+
+@include responsive(mobile)
+{
+display: none;
+}
+
+@include responsive(desktop)
+{
+flex-direction: column;
+}
+}
+
+.NombreEmpresa:hover 
+{
+
+width: 200px;
+height: 200px;
+transform:  scale(1.1);
+transition: 4s;
+}
+
+
+.Mapa
+{
+
+margin: 30px ;
+text-align: end;
+padding-top: 20px;
+width: 400px;
+height: 200px;
+@include responsive(tablet)
+{
+display: none;
+}
+
+@include responsive(mobile)
+{
+display: none;
+}
+
+@include responsive(desktop)
+{
+flex-direction: column;
+}
+}
+
+.RedeSociales-anidado
+{
+display: grid;
+grid-template-rows:1fr 1fr;
+grid-template-columns: auto;
+text-align: center;
+
+}
+
+.iconos-anidados
+{
+display:grid;
+grid-template-rows: 1fr;
+grid-template-columns: 1fr 1fr;
+}
+
+.face{   
+width: 50px;
+height: 50px;
+}
+.facebook
+{
+text-align: end;
+margin: 20px;
+}
+
+.insta{
+width: 50px;
+height: 50px;
+}
+.instagram
+{
+text-align: start;
+margin: 20px;
+}
+
+.tituloh3
+{
+
+text-align: center;
+color: white;
+padding-top: 30px;
+
+}
+
+.caja-2
+{
+background-color: #0a1a2a;
+padding: 15px 10px;
+text-align: center;
+color:white;
+}
+
+.caja-2 .small
+{
+font-size: 15px;
+}
+
+/*nosotros*/
+.nosotros
+{
+justify-items: center;
+display: grid;
+grid-template-rows:auto;
+text-align: center;
+}
+
+.texto
+{
+text-align: center;
+width: 80%;
+}
+
+.foto
+{
+display:grid;
+grid-template-rows: 1fr;
+grid-template-columns: 1fr 1fr;
+padding: 20px;
+@include responsive(tablet)
+{
+display: block;
+
+@include responsive(mobile)
+{
+display: block;
+}
+}
+@include responsive(desktop)
+{
+display: block;
+}
+}
+
+
+.foto1
+{
+text-align: end;
+margin: 25px;
+}
+
+.foto2
+{
+text-align: start;
+margin: 25px;
+padding: 10px;
+
+}
+
+
+.Productos-grid
+{
+display: grid;
+grid-template-columns: auto auto auto;
+grid-template-rows: auto auto;
+column-gap: 10em;
+row-gap: 5em;
+justify-content: center;
+margin: 20px;
+
+@include responsive(tablet)
+{
+display: block;
+max-width: 100%;
+display: block;
+margin: 10 auto;
+}
+@include responsive(mobile)
+{
+max-width: 100%;
+display: block;
+margin: 10 auto;
+}
+@include responsive(desktop)
+{
+flex-direction: column;
+}
+}
+
+@mixin cajas_anidadas
+{
+display: grid;
+grid-template-columns: 1fr 1fr;
+
+@include responsive(mobile)
+{
+display: block;
+}
+@include responsive(desktop)
+{
+display: block;
+}
+}
+
+@mixin cajas
+{
+display: grid;
+grid-template-columns: 1fr;
+grid-row: 1fr 1fr;
+@include responsive(tablet)
+{
+margin: 25px;
+border: 1px solid black;
+}
+@include responsive(mobile)
+{
+margin: 25px;
+border: 1px solid black;
+}
+
+@include responsive(desktop)
+{
+margin: auto;
+border: 1px solid black;
+}
+}
+
+.texto
+{
+text-align: justify;
+margin-left: 5px;
+padding: 3px;
+}
+
+.titulo-caja
+{
+text-align: center;
+color: black;
+
+
+}
+.cajas
+{
+@include cajas();
+}
+
+.cajas-anidado
+{
+@include cajas_anidadas();
+}
+
+
+.xx
+{
+height: 400px;
+width: 400px;
+@include responsive(tablet)
+{
+max-width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+@include responsive(mobile)
+{
+max-width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+
+@include responsive(desktop)
+{
+max-width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+}
+
+.fotos
+{
+display: flex;
+justify-content: center;
+align-items:  center;
+min-height: 100vh;
+@include responsive(tablet)
+{
+width: 500;
+height: 700;
+}
+@include responsive(mobile)
+{
+width: 500;
+height: 700;
+}
+
+@include responsive(desktop)
+{
+width: 500;
+height: 700;
+}
+}
+
+.galeria
+{
+margin:10px;
+}
+
+.fotos .galeria
+{
+max-width: 750px;
+display: grid;
+grid-template-columns: 250px 250px 250px;
+grid-template-rows: 250px 250px 250px;
+grid-gap: 1rem;
+@include responsive(tablet)
+{
+display: block;
+width: auto;
+height: auto;
+}
+@include responsive(mobile)
+{
+display: block;
+width: auto;
+height: auto;
+}
+
+@include responsive(desktop)
+{
+display: block;
+width: auto;
+height: auto;
+}
+}
+
+.fotos .galeria img
+{
+margin-top: 5px;
+object-fit: cover;   
+width: 100%;
+height: 100%;
+border-radius: 10px;
+@include responsive(tablet)
+{
+margin: 10px;
+}
+@include responsive(mobile)
+{
+margin: 10px;
+}
+@include responsive(desktop)
+{
+margin: 10px;
+}
+}
+
+.fotos .galeria .img-a
+{
+grid-column: 1/3;
+}
+
+.fotos .galeria .img-b
+{
+grid-row: 2/4;
+
+}
+
+
+.fotos .galeria .img-f
+{
+grid-column: 2/4;   
+
+}
+
+
+* {
+box-sizing: border-box;
+}
+
+body {
+background: #181818;
+color: #fff;
+line-height: 1.6;
+font-family: 'Quicksand', sans-serif;
+padding: 0 1.5em;
+}
+
+.container 
+{
+max-width: 100%;
+margin-left: auto;
+margin-right: auto;
+padding: 1.5em;
+}
+
+ul {
+list-style: none;
+padding: 0;
+}
+
+.logo 
+{
+text-align: center;
+font-size: 3em;
+}
+
+.logo span 
+{
+color: #B70E21;
+}
+
+.contact-wrapper 
+{
+box-shadow: 0 0 20px 0 rgba(255, 255, 255, .3);
+}
+
+.contact-wrapper > * 
+{
+padding: 1em;
+}
+
+.contact-form
+{
+background:rgb(146, 127, 127);
+}
+
+.contact-form form 
+{
+display: grid;
+grid-template-columns: 1fr 1fr;
+}
+
+.contact-form form label 
+{
+display: block;
+}
+
+.contact-form form p 
+{
+margin: 0;
+padding: 1em;
+}
+
+.contact-form form .block 
+{
+grid-column: 1 / 3;
+}
+
+.contact-form form button,
+.contact-form form input,
+.contact-form form textarea 
+{
+width: 100%;
+padding: .7em;
+border: none;
+background: none;
+outline: 0;
+color: #1a3f39;
+border-bottom: 1px solid #d63031;
+}
+
+.contact-form form button 
+{
+background: #B70E21;
+border: 0;
+text-transform: uppercase;
+padding: 1em;
+}
+
+.contact-form form button:hover,
+.contact-form form button:focus 
+{
+background: #d63031;
+color: #494646;
+transition: background-color 1s ease-out;
+outline: 0;
+}
+
+/* CONTACT INFO */
+.contact-info 
+{
+background: rgba(228, 205, 205, 0.425);
+
+}
+
+.contact-info h4, .contact-info ul, .contact-info p 
+{
+text-align: center;
+margin: 0 0 1rem 0;
+}
+
+
+.imagenes
+{
+width:224px ;
+height: 199px;
+@include responsive(tablet){
+max-width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+@include responsive(mobile)
+{
+max-width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+
+@include responsive(desktop)
+{
+max-width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+}
+.col-12
+{
+text-align: center;
+}
+.Imedia
+{
+width: 300px;
+height: 250px;
+
+@include responsive(tablet)
+{
+max-width: 100%;
+height: auto;
+margin: 10px;
+
+}
+@include responsive(mobile)
+{
+max-width: 100%;
+height: auto;
+margin: 10px;
+}
+
+@include responsive(desktop)
+{
+max-width: 100%;
+height: auto;
+margin: 10px;
+}
+
+}
